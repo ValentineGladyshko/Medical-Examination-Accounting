@@ -20,6 +20,10 @@
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Padding" Value="10 0 10 0"></Setter>
         </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="5"/>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.Background>
@@ -34,12 +38,13 @@
         </Menu>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -53,25 +58,28 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" Text="Прізвище:" Width="80"></TextBlock>
-                <TextBox Grid.Row="0" Grid.Column="1" FontSize="14" MinWidth="70"></TextBox>
+                <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" Text="Прізвище:" Width="Auto"></TextBlock>
+                <TextBox Grid.Row="0" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" Text="Ім'я:" Width="80"></TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="1" FontSize="14" MinWidth="70"></TextBox>
+                <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" Text="Ім'я:" Width="Auto"></TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" Text="По-Батькові:" Width="80"></TextBlock>
-                <TextBox Grid.Row="2" Grid.Column="1" FontSize="14" MinWidth="70"></TextBox>
+                <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" Text="По-Батькові:" Width="Auto"></TextBlock>
+                <TextBox Grid.Row="2" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
 
-                <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14" Text="Область:" Width="80"></TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14" Text="Область:" Width="Auto"></TextBlock>
                 <TextBox Grid.Row="3" Grid.Column="1" FontSize="14" MinWidth="70"></TextBox>
 
-                <TextBlock Grid.Row="4" Grid.Column="0" FontSize="14" Text="Місто:" Width="80"></TextBlock>
-                <TextBox Grid.Row="4" Grid.Column="1" FontSize="14" MinWidth="70"></TextBox>
+                <TextBlock Grid.Row="4" Grid.Column="0" FontSize="14" Text="Населений пункт:" Width="Auto"></TextBlock>
+                <TextBox Grid.Row="4" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
 
-                <TextBlock Grid.Row="5" Grid.Column="0" FontSize="14" Text="Вулиця:" Width="80"></TextBlock>
-                <TextBox Grid.Row="5" Grid.Column="1" FontSize="14" MinWidth="70"></TextBox>
+                <TextBlock Grid.Row="5" Grid.Column="0" FontSize="14" Text="Вулиця:" Width="Auto"></TextBlock>
+                <TextBox Grid.Row="5" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
 
-                <Button Grid.Row="6" Grid.ColumnSpan="2" Content="Пошук" VerticalAlignment="Top" HorizontalAlignment="Center"></Button>
+                <TextBlock Grid.Row="6" Grid.Column="0" FontSize="14" Text="Дата Народження:" Width="Auto"></TextBlock>
+                <DatePicker Grid.Row="6" Grid.Column="1" MinWidth="100"/>
+
+                <Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Content="Пошук" VerticalAlignment="Top" HorizontalAlignment="Center"></Button>
 
             </Grid>
             <GridSplitter Grid.Column="1" ShowsPreview="False" Width="5"
