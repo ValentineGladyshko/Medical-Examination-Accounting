@@ -1,8 +1,9 @@
-﻿using MedicalExaminationAccounting.Model.Entities;
+﻿using System;
+using MedicalExaminationAccounting.Model.Entities;
 
 namespace MedicalExaminationAccounting.Model.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IRepository<Patient> Patients { get; }
         IRepository<Region> Regions { get; }
