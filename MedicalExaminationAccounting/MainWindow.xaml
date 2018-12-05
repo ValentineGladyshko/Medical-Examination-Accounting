@@ -7,7 +7,16 @@
         mc:Ignorable="d"
         Title="Облік медицинських обстежень" Height="450" Width="800">
     <Window.Resources>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Opacity" Value="1.0" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="Background" Value="#0F000000" />
+        </Style>
         <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="ComboBox">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
@@ -27,7 +36,7 @@
     </Window.Resources>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="Images/Background.png" Opacity="0.3" Stretch="None" />
+            <ImageBrush ImageSource="Images/Background.png" Opacity="0.1" Stretch="None" />
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -51,6 +60,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -59,32 +70,63 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" Text="Прізвище:" Width="Auto"></TextBlock>
-                <TextBox Grid.Row="0" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
+                <ComboBox Name="LastNameBox" Grid.Row="0" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
 
                 <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" Text="Ім'я:" Width="Auto"></TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
+                <ComboBox Name="FirstNameBox" Grid.Row="1" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" Text="По-Батькові:" Width="Auto"></TextBlock>
-                <TextBox Grid.Row="2" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
+                <ComboBox Name="MiddleNameBox" Grid.Row="2" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14" Text="Область:" Width="Auto"></TextBlock>
-                <TextBox Grid.Row="3" Grid.Column="1" FontSize="14" MinWidth="70"></TextBox>
+                <ComboBox Grid.Row="3" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
 
                 <TextBlock Grid.Row="4" Grid.Column="0" FontSize="14" Text="Населений пункт:" Width="Auto"></TextBlock>
-                <TextBox Grid.Row="4" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
+                <ComboBox Grid.Row="4" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
 
                 <TextBlock Grid.Row="5" Grid.Column="0" FontSize="14" Text="Вулиця:" Width="Auto"></TextBlock>
-                <TextBox Grid.Row="5" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
+                <ComboBox Grid.Row="5" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
 
-                <TextBlock Grid.Row="6" Grid.Column="0" FontSize="14" Text="Дата Народження:" Width="Auto"></TextBlock>
-                <DatePicker Grid.Row="6" Grid.Column="1" MinWidth="100"/>
+                <TextBlock Grid.Row="6" FontSize="14" Text="Дата Народження:" Grid.ColumnSpan="2" TextAlignment="Center" HorizontalAlignment="Center"></TextBlock>
 
-                <Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Content="Пошук" VerticalAlignment="Top" HorizontalAlignment="Center"></Button>
+
+                <Grid Grid.Row="7" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" FontSize="14" Text="Від:" VerticalAlignment="Center"/>
+                    <DatePicker Grid.Column="1" Language="uk-UA"/>
+                </Grid>
+
+                <Grid Grid.Row="8" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" FontSize="14" Text="До:" VerticalAlignment="Center"/>
+                    <DatePicker Grid.Column="1" Language="uk-UA"/>
+                </Grid>
+
+                <Button Name="SearchButton" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Content="Пошук" VerticalAlignment="Top" HorizontalAlignment="Center"></Button>
 
             </Grid>
             <GridSplitter Grid.Column="1" ShowsPreview="False" Width="5"
                           HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-            <Grid Grid.Column="2"/>
+            <ListBox Name="ListBoxPatient" Grid.Column="2" Background="{x:Null}"  >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="2" Orientation="Horizontal">
+                            <TextBlock FontSize="14" Text="{Binding Path=LastName}" VerticalAlignment="Center" Margin="2"/>
+                            <TextBlock FontSize="14" Text="{Binding Path=FirstName}" VerticalAlignment="Center" Margin="2"/>
+                            <TextBlock FontSize="14" Text="{Binding Path=MiddleName}" VerticalAlignment="Center" Margin="2"/>
+                            <TextBlock FontSize="14" Text="{Binding Path=BirthDate, StringFormat=dd.MM.yyyy}" VerticalAlignment="Center" Margin="2"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
     </Grid>
 </Window>

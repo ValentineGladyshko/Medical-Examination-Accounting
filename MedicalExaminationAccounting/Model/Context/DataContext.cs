@@ -1,4 +1,8 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
+using System.Linq;
 using MedicalExaminationAccounting.Model.Entities;
 
 namespace MedicalExaminationAccounting.Model.Context
@@ -20,10 +24,66 @@ namespace MedicalExaminationAccounting.Model.Context
         }
     }
 
-    public class StoreDbInitializer : DropCreateDatabaseAlways<DataContext>
+    public class StoreDbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
     {
         protected override void Seed(DataContext db)
         {
+            string path = @"C:\Users\Kappi\Source\Repos\Medical-Examination-Accounting\MedicalExaminationAccounting\Strings";
+            string[] womanFirstNames = File.ReadAllLines(path + @"\womanfirstnames.txt");
+            string[] womanMiddleNames = File.ReadAllLines(path + @"\womanmiddlenames.txt");
+            string[] womanLastNames = File.ReadAllLines(path + @"\womanlastnames.txt");
+            string[] manFirstNames = File.ReadAllLines(path + @"\manfirstnames.txt");
+            string[] manMiddleNames = File.ReadAllLines(path + @"\manmiddlenames.txt");
+            string[] manLastNames = File.ReadAllLines(path + @"\manlastnames.txt");
+
+            db.Regions.Add(new Region
+            {
+                RegionName = "Київська"
+            });
+
+            db.SaveChanges();
+
+            db.Settlements.Add(new Settlement
+            {
+                SettlementName = "Київ",
+                RegionId = db.Regions.First().Id
+            });
+
+            db.SaveChanges();
+
+            db.Streets.Add(new Street
+            {
+                StreetName = "Політехнічний провулок",
+                SettlementId = db.Settlements.First().Id
+            });
+
+            db.SaveChanges();
+
+            Random rand = new Random();
+            var list = new List<Patient>();
+            int id = db.Streets.First().Id;
+            for (int i = 0; i < 10000; i++)
+            {
+                var patient = new Patient();
+                if (rand.Next(0, 2) == 0)
+                {
+                    patient.FirstName = womanFirstNames[rand.Next(0, womanFirstNames.Length)];
+                    patient.MiddleName = womanMiddleNames[rand.Next(0, womanMiddleNames.Length)];
+                    patient.LastName = womanLastNames[rand.Next(0, womanLastNames.Length)];
+                }
+                else
+                {
+                    patient.FirstName = manFirstNames[rand.Next(0, manFirstNames.Length)];
+                    patient.MiddleName = manMiddleNames[rand.Next(0, manMiddleNames.Length)];
+                    patient.LastName = manLastNames[rand.Next(0, manLastNames.Length)];
+                }
+
+                patient.BirthDate = DateTime.Today;
+                patient.StreetId = id;
+                list.Add(patient);
+            }
+
+            db.Patients.AddRange(list);
             db.SaveChanges();
         }
     }
