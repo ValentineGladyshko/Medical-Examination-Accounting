@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MedicalExaminationAccounting.Model.Entities
@@ -13,6 +13,6 @@ namespace MedicalExaminationAccounting.Model.Entities
         public int SettlementId { get; set; }
         public virtual Settlement Settlement { get; set; }
 
-        public DateTime DeletedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
     }
 }

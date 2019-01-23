@@ -16,7 +16,7 @@ namespace MedicalExaminationAccounting.Model.Entities
         [Required]
         public DateTime BirthDate { get; set; }
 
-        public DateTime DeletedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
         public int StreetId { get; set; }
         public virtual Street Street { get; set; }

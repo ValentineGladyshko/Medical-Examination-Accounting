@@ -13,6 +13,6 @@ namespace MedicalExaminationAccounting.Model.Entities
         public int ExaminationId { get; set; }
         public virtual Examination Examination { get; set; }
 
-        public DateTime DeletedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
     }
 }

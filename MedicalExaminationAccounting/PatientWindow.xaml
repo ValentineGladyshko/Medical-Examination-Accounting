@@ -1,0 +1,82 @@
+﻿<Window x:Class="MedicalExaminationAccounting.PatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedicalExaminationAccounting"
+        xmlns:entities="clr-namespace:MedicalExaminationAccounting.Model.Entities"
+        mc:Ignorable="d"
+        Title="Пацієнт" Height="450" Width="350">
+    <Window.Resources>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Opacity" Value="1.0"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Background" Value="#0F000000"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="10 0 10 0"/>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" Text="Прізвище:" Width="Auto"></TextBlock>
+        <TextBox Name="LastNameBox" Grid.Row="0" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" Text="Ім'я:" Width="Auto"></TextBlock>
+        <TextBox Name="FirstNameBox" Grid.Row="1" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" Text="По-Батькові:" Width="Auto"></TextBlock>
+        <TextBox Name="MiddleNameBox" Grid.Row="2" Grid.Column="1" FontSize="14" MinWidth="100"></TextBox>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14" Text="Область:" Width="Auto"></TextBlock>
+        <ComboBox Name="RegionBox"  Grid.Row="3" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" FontSize="14" Text="Населений пункт:" Width="Auto"></TextBlock>
+        <ComboBox Name="SettlementBox" Grid.Row="4" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" FontSize="14" Text="Вулиця:" Width="Auto"></TextBlock>
+        <ComboBox Name="StreetBox"  Grid.Row="5" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+
+        <TextBlock Grid.Row="6" Grid.Column="0" FontSize="14" Text="Дата Народження:" Width="Auto"></TextBlock>
+        <DatePicker Name="StartDatePicker" Grid.Row="6" Grid.Column="1" Language="uk-UA"/>
+        <DockPanel Grid.Row="9" Grid.ColumnSpan="2" LastChildFill="False">
+            <Button Name="CancelButton" MinWidth="100" Margin="0 10 10 10" Content="Відміна" DockPanel.Dock="Right"></Button>
+            <Button Name="WorkButton" MinWidth="100" DockPanel.Dock="Right"></Button>
+        </DockPanel>
+
+    </Grid>
+</Window>

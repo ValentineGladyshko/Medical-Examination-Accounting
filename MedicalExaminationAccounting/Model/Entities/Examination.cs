@@ -9,6 +9,8 @@ namespace MedicalExaminationAccounting.Model.Entities
         public int Id { get; set; }
         public string Diagnosis { get; set; }
         public string Descripton { get; set; }
+        [Required]
+        public DateTime ExaminationDate { get; set; }
 
         [Required]
         public int ExaminationTypeId { get; set; }
@@ -21,7 +23,7 @@ namespace MedicalExaminationAccounting.Model.Entities
         public int DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
 
-        public DateTime DeletedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
         public virtual ICollection<ExaminationData> ExaminationDatas { get; set; }
     }

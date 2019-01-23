@@ -73,10 +73,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Entities\ActionType.cs" />
     <Compile Include="Model\Entities\Doctor.cs" />
     <Compile Include="Model\Entities\Examination.cs" />
     <Compile Include="Model\Entities\ExaminationData.cs" />
     <Compile Include="Model\Entities\ExaminationType.cs" />
+    <Compile Include="PatientWindow.xaml.cs">
+      <DependentUpon>PatientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\Infrastructure\ServiceModule.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -90,6 +94,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PatientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Context\DataContext.cs" />

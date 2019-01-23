@@ -13,6 +13,6 @@ namespace MedicalExaminationAccounting.Model.Entities
         public int RegionId { get; set; }
         public virtual Region Region { get; set; }
 
-        public DateTime DeletedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
     }
 }

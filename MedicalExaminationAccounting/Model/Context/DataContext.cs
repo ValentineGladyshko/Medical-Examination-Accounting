@@ -62,7 +62,8 @@ namespace MedicalExaminationAccounting.Model.Context
 
             db.Regions.Add(new Region
             {
-                RegionName = "Київська"
+                RegionName = "Київська",
+                DeletedDate = null
             });
 
             db.SaveChanges();
@@ -70,7 +71,8 @@ namespace MedicalExaminationAccounting.Model.Context
             db.Settlements.Add(new Settlement
             {
                 SettlementName = "Київ",
-                RegionId = db.Regions.First().Id
+                RegionId = db.Regions.First().Id,
+                DeletedDate = null
             });
 
             db.SaveChanges();
@@ -78,7 +80,8 @@ namespace MedicalExaminationAccounting.Model.Context
             db.Streets.Add(new Street
             {
                 StreetName = "Політехнічний провулок",
-                SettlementId = db.Settlements.First().Id
+                SettlementId = db.Settlements.First().Id,
+                DeletedDate = null
             });
 
             db.SaveChanges();
@@ -104,6 +107,7 @@ namespace MedicalExaminationAccounting.Model.Context
 
                 patient.BirthDate = DateTime.Today;
                 patient.StreetId = id;
+                patient.DeletedDate = null;
                 list.Add(patient);
             }
 

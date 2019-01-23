@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicalExaminationAccounting"
         mc:Ignorable="d"
-        Title="Облік медицинських обстежень" Height="450" Width="800">
+        Title="Облік медицинських обстежень" Height="495" Width="880">
     <Window.Resources>
         <Style TargetType="ListBoxItem">
             <Setter Property="Opacity" Value="1.0"/>
@@ -27,7 +27,7 @@
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="14" />
             <Setter Property="Margin" Value="10"/>
-            <Setter Property="Padding" Value="10 0 10 0"></Setter>
+            <Setter Property="Padding" Value="10 0 10 0"/>
         </Style>
         <Style TargetType="DatePicker">
             <Setter Property="FontSize" Value="14" />
@@ -44,7 +44,7 @@
                         <ImageBrush ImageSource="Images/Background.png" Opacity="0.1" Stretch="None"/>
                     </Grid.Background>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="0.475*"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -94,7 +94,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" FontSize="14" Text="Від:" VerticalAlignment="Center"/>
-                            <DatePicker Grid.Column="1" Language="uk-UA"/>
+                            <DatePicker Name="StartDatePicker" Grid.Column="1" Language="uk-UA"/>
                         </Grid>
 
                         <Grid Grid.Row="8" Grid.ColumnSpan="2">
@@ -104,10 +104,10 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" FontSize="14" Text="До:" VerticalAlignment="Center"/>
-                            <DatePicker Grid.Column="1" Language="uk-UA"/>
+                            <DatePicker Name="EndDatePicker" Grid.Column="1" Language="uk-UA"/>
                         </Grid>
 
-                        <Button Name="SearchButton" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Content="Пошук" VerticalAlignment="Top" HorizontalAlignment="Center"></Button>
+                        <Button MinWidth="100" Name="SearchButton" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Content="Пошук" VerticalAlignment="Top" HorizontalAlignment="Center"></Button>
 
                     </Grid>
                     <GridSplitter Grid.Column="1" ShowsPreview="False" Width="5"
@@ -115,14 +115,13 @@
                     <ListBox Name="ListBoxPatient" Grid.Column="2" Background="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Stretch">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                
-                                <DockPanel Name="DockPanel" Margin="2" LastChildFill="True" HorizontalAlignment="Stretch">
+                                <DockPanel Name="DockPanel" Margin="2" HorizontalAlignment="Stretch" LastChildFill="False">
                                     <TextBlock DockPanel.Dock="Left" FontSize="14" Text="{Binding Path=LastName}" VerticalAlignment="Center" Margin="2"/>
                                     <TextBlock DockPanel.Dock="Left" FontSize="14" Text="{Binding Path=FirstName}" VerticalAlignment="Center" Margin="2"/>
                                     <TextBlock DockPanel.Dock="Left" FontSize="14" Text="{Binding Path=MiddleName}" VerticalAlignment="Center" Margin="2"/>
                                     <TextBlock DockPanel.Dock="Left" FontSize="14" Text="{Binding Path=BirthDate, StringFormat=dd.MM.yyyy}" VerticalAlignment="Center" Margin="2"/>
-                                    <Button Click="DeleteButtonOnClick" DockPanel.Dock="Right" Name="DeleteButton" Tag="{Binding Path=Id}" Content="Видалити" Margin="2"></Button>
-                                    <TextBlock></TextBlock>
+                                    <Button Click="DeleteButtonOnClick" MinWidth="100" DockPanel.Dock="Right" Name="DeleteButton" Tag="{Binding Path=Id}" Content="Видалити" Margin="2"></Button>
+                                    <Button Click="EditButtonOnClick" MinWidth="100" DockPanel.Dock="Right" Name="EditButton" Tag="{Binding Path=Id}" Content="Редагувати" Margin="2"></Button>
                                 </DockPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -131,7 +130,7 @@
             </TabItem.Content>
         </TabItem>
         <TabItem Name="Examination" Header="Обстеження МРТ">
-            
+
         </TabItem>
 
     </TabControl>

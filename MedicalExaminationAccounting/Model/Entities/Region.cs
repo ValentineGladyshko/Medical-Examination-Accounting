@@ -12,6 +12,6 @@ namespace MedicalExaminationAccounting.Model.Entities
         [MaxLength(100)]
         public string RegionName { get; set; }
 
-        public DateTime DeletedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
     }
 }
