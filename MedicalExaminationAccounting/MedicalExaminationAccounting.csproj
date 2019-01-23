@@ -73,6 +73,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Entities\Doctor.cs" />
+    <Compile Include="Model\Entities\Examination.cs" />
+    <Compile Include="Model\Entities\ExaminationData.cs" />
+    <Compile Include="Model\Entities\ExaminationType.cs" />
     <Compile Include="ViewModel\Infrastructure\ServiceModule.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MedicalExaminationAccounting.Model.Entities
 {
-    public class Street
+    public class ExaminationData
     {
         public int Id { get; set; }
         [Required]
-        public string StreetName { get; set; }
+        public byte[] Data { get; set; }
 
         [Required]
-        public int SettlementId { get; set; }
-        public virtual Settlement Settlement { get; set; }
+        public int ExaminationId { get; set; }
+        public virtual Examination Examination { get; set; }
 
         public DateTime DeletedDate { get; set; }
     }

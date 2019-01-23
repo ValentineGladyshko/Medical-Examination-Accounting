@@ -29,7 +29,7 @@ namespace MedicalExaminationAccounting.Model.Repositories
 
         public IEnumerable<Patient> Find(Func<Patient, bool> predicate)
         {
-            return db.Patients.Include(item => item.Street.Settlement.Region).ToList().Where(predicate);
+            return db.Patients.Include(item => item.Street.Settlement.Region).Where(predicate);
         }
 
         public void Create(Patient item)

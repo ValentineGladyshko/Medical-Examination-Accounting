@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using AutoMapper.QueryableExtensions;
 using MedicalExaminationAccounting.Model.Context;
 using MedicalExaminationAccounting.Model.Entities;
+using MedicalExaminationAccounting.Model.Repositories;
 
 namespace MedicalExaminationAccounting
 {
@@ -25,60 +26,86 @@ namespace MedicalExaminationAccounting
     /// </summary>
     public partial class MainWindow : Window
     {
-        DataContext db = new DataContext("DataContext");
-
+        EFUnitOfWork unitOfWork = new EFUnitOfWork("DataContext");
         public MainWindow()
         {
+            unitOfWork.Regions.GetAll().ToList();
             InitializeComponent();
-
-            db.Patients.Load();
-            //ListBoxPatient.ItemsSource = db.Patients.Local;
-
-            var asd = db.Patients.ToList();
-            var firstNamesList = asd.Select(patient => patient.FirstName).Distinct().ToList();
-            firstNamesList.Sort();
-
-            var middleNamesList = asd.Select(patient => patient.MiddleName).Distinct().ToList();
-            middleNamesList.Sort();
-
-            var lastNamesList = asd.Select(patient => patient.LastName).Distinct().ToList();
-            lastNamesList.Sort();
-
-            FirstNameBox.ItemsSource = firstNamesList;
-            MiddleNameBox.ItemsSource = middleNamesList;
-            LastNameBox.ItemsSource = lastNamesList;
-
+            
             FirstNameBox.DropDownOpened += (object sender, EventArgs e) =>
             {
-                var list = firstNamesList.Where(item => item.Contains(FirstNameBox.Text));
+                var list = unitOfWork.Patients.GetAll()
+                    .Where(patient => patient.FirstName.Contains(FirstNameBox.Text))
+                    .Select(patient => patient.FirstName).ToList().Distinct().ToList();
+                list.Sort();
                 FirstNameBox.ItemsSource = list;
             };
 
             MiddleNameBox.DropDownOpened += (object sender, EventArgs e) =>
             {
-                middleNamesList = db.Patients.Local.Where(patient =>
-                        patient.MiddleName.ToLower().Contains(MiddleNameBox.Text.ToLower()))
-                    .Select(patient => patient.MiddleName).Distinct().ToList();
-                middleNamesList.Sort();
-                MiddleNameBox.ItemsSource = middleNamesList;
+                var list = unitOfWork.Patients.GetAll()
+                    .Where(patient => patient.MiddleName.Contains(MiddleNameBox.Text))
+                    .Select(patient => patient.MiddleName).ToList().Distinct().ToList();
+                list.Sort();
+                MiddleNameBox.ItemsSource = list;
             };
 
             LastNameBox.DropDownOpened += (object sender, EventArgs e) =>
             {
-                lastNamesList = db.Patients.Local
-                    .Where(patient => patient.LastName.ToLower().Contains(LastNameBox.Text.ToLower()))
-                    .Select(patient => patient.LastName).Distinct().ToList();
-                lastNamesList.Sort();
-                LastNameBox.ItemsSource = lastNamesList;
+                var list = unitOfWork.Patients.GetAll()
+                    .Where(patient => patient.LastName.Contains(LastNameBox.Text))
+                    .Select(patient => patient.LastName).ToList().Distinct().ToList();
+                list.Sort();
+                LastNameBox.ItemsSource = list;
+            };
+
+            RegionBox.DropDownOpened += (object sender, EventArgs e) =>
+            {
+                var list = unitOfWork.Regions.GetAll()
+                    .Where(region => region.RegionName.Contains(RegionBox.Text))
+                    .Select(region => region.RegionName).Distinct().ToList();
+                list.Sort();
+                RegionBox.ItemsSource = list;
+            };
+
+            SettlementBox.DropDownOpened += (object sender, EventArgs e) =>
+            {
+                var list = unitOfWork.Settlements.GetAll()
+                    .Where(settlement => settlement.Region.RegionName.Contains(RegionBox.Text) 
+                                         && settlement.SettlementName.Contains(SettlementBox.Text))
+                    .Select(settlement => settlement.SettlementName).Distinct().ToList();
+                list.Sort();
+                SettlementBox.ItemsSource = list;
+            };
+
+            StreetBox.DropDownOpened += (object sender, EventArgs e) =>
+            {
+                var list = unitOfWork.Streets.GetAll()
+                    .Where(street => street.Settlement.SettlementName.Contains(SettlementBox.Text)
+                                         && street.Settlement.Region.RegionName.Contains(RegionBox.Text)
+                                         && street.StreetName.Contains(StreetBox.Text))
+                    .Select(street => street.StreetName).Distinct().ToList();
+                list.Sort();
+                SettlementBox.ItemsSource = list;
             };
 
             SearchButton.Click += (object sender, RoutedEventArgs e) =>
             {
-                ListBoxPatient.ItemsSource = db.Patients.Local.Where(patient =>
-                    patient.FirstName.ToLower().Contains(FirstNameBox.Text.ToLower())
-                    && patient.MiddleName.ToLower().Contains(MiddleNameBox.Text.ToLower())
-                    && patient.LastName.ToLower().Contains(LastNameBox.Text.ToLower()));
+                var list = unitOfWork.Patients.GetAll().Where(patient =>
+                    patient.FirstName.Contains(FirstNameBox.Text)
+                    && patient.MiddleName.Contains(MiddleNameBox.Text)
+                    && patient.LastName.Contains(LastNameBox.Text)).ToList();
+                ListBoxPatient.ItemsSource = list;
             };
+        }
+
+        private void DeleteButtonOnClick(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            int s = (int) button.Tag;
+            var patientToDelete = unitOfWork.Patients.Get(s);
+            patientToDelete.DeletedDate = DateTime.Now;
+            unitOfWork.Patients.Update(patientToDelete);
         }
     }
 }

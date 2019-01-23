@@ -13,6 +13,10 @@ namespace MedicalExaminationAccounting.Model.Context
         public DbSet<Region> Regions { get; set; }
         public DbSet<Settlement> Settlements { get; set; }
         public DbSet<Street> Streets { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Examination> Examinations { get; set; }
+        public DbSet<ExaminationType> ExaminationTypes { get; set; }
+        public DbSet<ExaminationData> ExaminationDatas { get; set; }
 
         static DataContext()
         {
@@ -24,9 +28,29 @@ namespace MedicalExaminationAccounting.Model.Context
         }
     }
 
-    public class StoreDbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
+    public class StoreDbInitializer : DropCreateDatabaseAlways<DataContext>
     {
         protected override void Seed(DataContext db)
+        {
+            PaietntInit(db);
+        }
+
+        private void RegionInit(DataContext db)
+        {
+            string path = @"C:\Users\Kappi\Source\Repos\Medical-Examination-Accounting\MedicalExaminationAccounting\Strings";
+            string[] regionNames = File.ReadAllLines(path + @"\regions.txt");
+            foreach (var name in regionNames)
+            {
+                db.Regions.Add(new Region
+                {
+                    RegionName = name
+                });
+            }
+            
+            db.SaveChanges();
+        }
+
+        private void PaietntInit(DataContext db)
         {
             string path = @"C:\Users\Kappi\Source\Repos\Medical-Examination-Accounting\MedicalExaminationAccounting\Strings";
             string[] womanFirstNames = File.ReadAllLines(path + @"\womanfirstnames.txt");
@@ -62,7 +86,7 @@ namespace MedicalExaminationAccounting.Model.Context
             Random rand = new Random();
             var list = new List<Patient>();
             int id = db.Streets.First().Id;
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 100; i++)
             {
                 var patient = new Patient();
                 if (rand.Next(0, 2) == 0)
