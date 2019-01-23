@@ -9,6 +9,10 @@ namespace MedicalExaminationAccounting.Model.Interfaces
         IRepository<Region> Regions { get; }
         IRepository<Settlement> Settlements { get; }
         IRepository<Street> Streets { get; }
+        IRepository<Examination> Examinations { get; }
+        IRepository<ExaminationType> ExaminationTypes { get; }
+        IRepository<ExaminationData> ExaminationDatas { get; }
+        IRepository<Doctor> Doctors { get; }
         void Save();
     }
 }

@@ -78,6 +78,10 @@
     <Compile Include="Model\Entities\Examination.cs" />
     <Compile Include="Model\Entities\ExaminationData.cs" />
     <Compile Include="Model\Entities\ExaminationType.cs" />
+    <Compile Include="Model\Repositories\DoctorRepository.cs" />
+    <Compile Include="Model\Repositories\ExaminationDataRepository.cs" />
+    <Compile Include="Model\Repositories\ExaminationRepository.cs" />
+    <Compile Include="Model\Repositories\ExaminationType.cs" />
     <Compile Include="PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>

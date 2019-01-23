@@ -11,6 +11,10 @@ namespace MedicalExaminationAccounting.Model.Repositories
         private RegionRepository regionRepository;
         private SettlementRepository settlementRepository;
         private StreetRepository streetRepository;
+        private ExaminationRepository examinationRepository;
+        private ExaminationDataRepository examinationDataRepository;
+        private ExaminationTypeRepository examinationTypeRepository;
+        private DoctorRepository doctorRepository;
 
         public EFUnitOfWork(string connectionString)
         {
@@ -25,6 +29,14 @@ namespace MedicalExaminationAccounting.Model.Repositories
             => settlementRepository ?? (settlementRepository = new SettlementRepository(db));
         public IRepository<Street> Streets 
             => streetRepository ?? (streetRepository = new StreetRepository(db));
+        public IRepository<Examination> Examinations
+            => examinationRepository ?? (examinationRepository = new ExaminationRepository(db));
+        public IRepository<ExaminationData> ExaminationDatas
+            => examinationDataRepository ?? (examinationDataRepository = new ExaminationDataRepository(db));
+        public IRepository<ExaminationType> ExaminationTypes
+            => examinationTypeRepository ?? (examinationTypeRepository = new ExaminationTypeRepository(db));
+        public IRepository<Doctor> Doctors
+            => doctorRepository ?? (doctorRepository = new DoctorRepository(db));
 
         public void Save()
         {
