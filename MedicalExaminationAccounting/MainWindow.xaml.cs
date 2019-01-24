@@ -1,4 +1,5 @@
-﻿using MedicalExaminationAccounting.Model.Repositories;
+﻿using MedicalExaminationAccounting.Model.Entities;
+using MedicalExaminationAccounting.Model.Repositories;
 using System;
 using System.Linq;
 using System.Windows;
@@ -15,8 +16,15 @@ namespace MedicalExaminationAccounting
 
         public MainWindow()
         {
-            unitOfWork.Regions.GetAll().ToList();
+
             InitializeComponent();
+
+            SetHandlers();
+        }
+
+        public void SetHandlers()
+        {
+            unitOfWork.Regions.GetAll().ToList();
 
             FirstNameBox.DropDownOpened += (object sender, EventArgs e) =>
             {
@@ -84,7 +92,7 @@ namespace MedicalExaminationAccounting
                         && street.StreetName.Contains(StreetBox.Text))
                     .Select(street => street.StreetName).Distinct().ToList();
                 list.Sort();
-                SettlementBox.ItemsSource = list;
+                StreetBox.ItemsSource = list;
             };
 
             SearchButton.Click += (object sender, RoutedEventArgs e) =>
@@ -94,7 +102,11 @@ namespace MedicalExaminationAccounting
                         patient.DeletedDate == null
                         && patient.FirstName.Contains(FirstNameBox.Text)
                         && patient.MiddleName.Contains(MiddleNameBox.Text)
-                        && patient.LastName.Contains(LastNameBox.Text)).ToList();
+                        && patient.LastName.Contains(LastNameBox.Text)
+                        && patient.Street.DeletedDate == null
+                        && patient.Street.Settlement.SettlementName.Contains(SettlementBox.Text)
+                        && patient.Street.Settlement.Region.RegionName.Contains(RegionBox.Text)
+                        && patient.Street.StreetName.Contains(StreetBox.Text)).ToList();
 
                 list.Sort(
                     (a, b) =>
@@ -116,13 +128,53 @@ namespace MedicalExaminationAccounting
 
                 ListBoxPatient.ItemsSource = list;
             };
-        }
 
+            CreateButton.Click += (object sender, RoutedEventArgs e) =>
+            {
+                Region regionToCreate = new Region
+                {
+                    RegionName = RegionBox.Text
+                };
+                Settlement settlementToCreate = new Settlement
+                {
+                    Region = regionToCreate,
+                    SettlementName = SettlementBox.Text
+                };
+                Street streetToCreate = new Street
+                {
+                    Settlement = settlementToCreate,
+                    StreetName = StreetBox.Text
+                };
+                Patient patientToCreate = new Patient
+                {
+                    FirstName = FirstNameBox.Text,
+                    LastName = LastNameBox.Text,
+                    MiddleName = MiddleNameBox.Text,
+                    BirthDate = StartDatePicker.SelectedDate ?? DateTime.Now,
+                    Street = streetToCreate
+                };
+
+                PatientWindow patientWindow = new PatientWindow(patientToCreate, ActionType.Create);
+                patientWindow.Show();
+            };
+        }
         private void DeleteButtonOnClick(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
 
             var patientToDelete = unitOfWork.Patients.Get((int)button.Tag);
+
+            string message = "Ви впевнені що хочете видалити пацієнта " 
+                             + patientToDelete.LastName + " " 
+                             + patientToDelete.FirstName 
+                             + " " + patientToDelete.MiddleName + " ?";
+
+            DialogWindow dialogWindow = new DialogWindow(message);
+            bool? dialogResult = dialogWindow.ShowDialog();
+
+            if (dialogResult != true)
+                return;
+
             patientToDelete.DeletedDate = DateTime.Now;
             unitOfWork.Patients.Update(patientToDelete);
             unitOfWork.Save();
@@ -134,10 +186,10 @@ namespace MedicalExaminationAccounting
         {
             Button button = sender as Button;
 
-            var patientToDelete = unitOfWork.Patients.Get((int)button.Tag);
-            patientToDelete.DeletedDate = DateTime.Now;
-            unitOfWork.Patients.Update(patientToDelete);
-            unitOfWork.Save();
+            var patientToUpdate = unitOfWork.Patients.Get((int)button.Tag);
+
+            PatientWindow patientWindow = new PatientWindow(patientToUpdate, ActionType.Edit);
+            patientWindow.ShowDialog();
 
             SearchButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
         }

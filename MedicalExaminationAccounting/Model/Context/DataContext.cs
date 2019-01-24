@@ -22,9 +22,20 @@ namespace MedicalExaminationAccounting.Model.Context
         {
             Database.SetInitializer<DataContext>(new StoreDbInitializer());
         }
-        public DataContext(string connectionString)
-            : base(connectionString)
+
+        private static DataContext dataContext;
+        private DataContext(string connectionString) : base(connectionString)
         {
+        }
+
+        public static DataContext GetDataContext(string connectionString)
+        {
+            if (dataContext == null)
+            {
+                dataContext = new DataContext(connectionString);
+            }
+
+            return dataContext;
         }
     }
 
@@ -32,7 +43,8 @@ namespace MedicalExaminationAccounting.Model.Context
     {
         protected override void Seed(DataContext db)
         {
-            PaietntInit(db);
+            ExaminationTypeInit(db);
+            PatientInit(db);
         }
 
         private void RegionInit(DataContext db)
@@ -50,7 +62,21 @@ namespace MedicalExaminationAccounting.Model.Context
             db.SaveChanges();
         }
 
-        private void PaietntInit(DataContext db)
+        private void ExaminationTypeInit(DataContext db)
+        {
+            db.ExaminationTypes.Add(new ExaminationType
+            {
+                TypeName = "МРТ",
+                DeletedDate = null
+            });
+
+            db.ExaminationTypes.Add(new ExaminationType
+            {
+                TypeName = "ЕКГ",
+                DeletedDate = null
+            });
+        }
+        private void PatientInit(DataContext db)
         {
             string path = @"C:\Users\Kappi\Source\Repos\Medical-Examination-Accounting\MedicalExaminationAccounting\Strings";
             string[] womanFirstNames = File.ReadAllLines(path + @"\womanfirstnames.txt");

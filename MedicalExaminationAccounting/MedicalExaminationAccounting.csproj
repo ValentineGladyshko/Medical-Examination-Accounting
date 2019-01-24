@@ -73,6 +73,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Entities\ActionType.cs" />
     <Compile Include="Model\Entities\Doctor.cs" />
     <Compile Include="Model\Entities\Examination.cs" />
@@ -85,7 +88,12 @@
     <Compile Include="PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Rules\NameRule.cs" />
     <Compile Include="ViewModel\Infrastructure\ServiceModule.cs" />
+    <Page Include="DialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

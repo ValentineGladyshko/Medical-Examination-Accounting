@@ -18,7 +18,7 @@ namespace MedicalExaminationAccounting.Model.Repositories
 
         public EFUnitOfWork(string connectionString)
         {
-            db = new DataContext(connectionString);
+            db = DataContext.GetDataContext(connectionString);
         }
 
         public IRepository<Patient> Patients 
