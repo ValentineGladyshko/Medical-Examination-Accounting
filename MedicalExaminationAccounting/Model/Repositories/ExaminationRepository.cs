@@ -19,7 +19,9 @@ namespace MedicalExaminationAccounting.Model.Repositories
 
         public IQueryable<Examination> GetAll()
         {
-            return db.Examinations.Include(item => item.Patient).Include(item => item.ExaminationDatas);
+            return db.Examinations.Include(item => item.Patient)
+                .Include(item => item.Doctor)
+                .Include(item => item.ExaminationDatas);
         }
 
         public Examination Get(int id)
@@ -29,7 +31,9 @@ namespace MedicalExaminationAccounting.Model.Repositories
 
         public IEnumerable<Examination> Find(Func<Examination, bool> predicate)
         {
-            return db.Examinations.Include(item => item.Patient).Include(item => item.ExaminationDatas).Where(predicate);
+            return db.Examinations.Include(item => item.Patient)
+                .Include(item => item.Doctor)
+                .Include(item => item.ExaminationDatas).Where(predicate);
         }
 
         public void Create(Examination item)

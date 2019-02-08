@@ -51,6 +51,9 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/Background.png" Opacity="0.1" Stretch="None"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -67,9 +70,11 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" Text="Прізвище:" Width="Auto"></TextBlock>
-        <TextBox Name="LastNameBox" Grid.Row="0" Grid.Column="1" FontSize="14" MinWidth="100" 
+        <TextBox BorderThickness="0 1.5" Margin="0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                 FontSize="16" Text ="Пацієнт" Padding="5" FontWeight="SemiBold" Width="Auto" 
+                 HorizontalContentAlignment="Center" ></TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" Text="Прізвище:" Width="Auto"></TextBlock>
+        <TextBox Name="LastNameBox" Grid.Row="1" Grid.Column="1" FontSize="14" MinWidth="100" 
                  Validation.ErrorTemplate="{StaticResource validationFailed}" >
             <TextBox.Text>
                 <Binding Path="LastName" Mode="TwoWay" NotifyOnValidationError="True">
@@ -80,8 +85,8 @@
             </TextBox.Text>
         </TextBox>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" Text="Ім'я:" Width="Auto"></TextBlock>
-        <TextBox Name="FirstNameBox" Grid.Row="1" Grid.Column="1" FontSize="14" MinWidth="100" 
+        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" Text="Ім'я:" Width="Auto"></TextBlock>
+        <TextBox Name="FirstNameBox" Grid.Row="2" Grid.Column="1" FontSize="14" MinWidth="100" 
                  Validation.ErrorTemplate="{StaticResource validationFailed}" >
             <TextBox.Text>
                 <Binding Path="FirstName" Mode="TwoWay" NotifyOnValidationError="True">
@@ -92,8 +97,8 @@
             </TextBox.Text>
         </TextBox>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" Text="По-Батькові:" Width="Auto"></TextBlock>
-        <TextBox Name="MiddleNameBox" Grid.Row="2" Grid.Column="1" FontSize="14" MinWidth="100" 
+        <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14" Text="По-Батькові:" Width="Auto"></TextBlock>
+        <TextBox Name="MiddleNameBox" Grid.Row="3" Grid.Column="1" FontSize="14" MinWidth="100" 
                  Validation.ErrorTemplate="{StaticResource validationFailed}" >
             <TextBox.Text>
                 <Binding Path="MiddleName" Mode="TwoWay" NotifyOnValidationError="True">
@@ -104,17 +109,17 @@
             </TextBox.Text>
         </TextBox>
 
-        <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14" Text="Область:" Width="Auto"></TextBlock>
-        <ComboBox Name="RegionBox"  Grid.Row="3" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+        <TextBlock Grid.Row="4" Grid.Column="0" FontSize="14" Text="Область:" Width="Auto"></TextBlock>
+        <ComboBox Name="RegionBox"  Grid.Row="4" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
 
-        <TextBlock Grid.Row="4" Grid.Column="0" FontSize="14" Text="Населений пункт:" Width="Auto"></TextBlock>
-        <ComboBox Name="SettlementBox" Grid.Row="4" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+        <TextBlock Grid.Row="5" Grid.Column="0" FontSize="14" Text="Населений пункт:" Width="Auto"></TextBlock>
+        <ComboBox Name="SettlementBox" Grid.Row="5" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
 
-        <TextBlock Grid.Row="5" Grid.Column="0" FontSize="14" Text="Вулиця:" Width="Auto"></TextBlock>
-        <ComboBox Name="StreetBox"  Grid.Row="5" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+        <TextBlock Grid.Row="6" Grid.Column="0" FontSize="14" Text="Вулиця:" Width="Auto"></TextBlock>
+        <ComboBox Name="StreetBox"  Grid.Row="6" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
 
-        <TextBlock Grid.Row="6" Grid.Column="0" FontSize="14" Text="Дата Народження:" Width="Auto"></TextBlock>
-        <DatePicker Name="BirthDatePicker" Grid.Row="6" Grid.Column="1" Language="uk-UA"/>
+        <TextBlock Grid.Row="7" Grid.Column="0" FontSize="14" Text="Дата Народження:" Width="Auto"></TextBlock>
+        <DatePicker Name="BirthDatePicker" Grid.Row="7" Grid.Column="1" Language="uk-UA"/>
         <DockPanel Grid.Row="9" Grid.ColumnSpan="2" LastChildFill="False" Background="#FFF0F0F0">
             <Button Name="CancelButton" MinWidth="100" Margin="0 10 10 10" Content="Відміна" DockPanel.Dock="Right"></Button>
             <Button Name="WorkButton" MinWidth="100" DockPanel.Dock="Right"></Button>

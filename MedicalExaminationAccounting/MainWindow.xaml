@@ -41,7 +41,8 @@
             <TabItem.Content>
                 <Grid>
                     <Grid.Background>
-                        <ImageBrush ImageSource="Images/Background.png" Opacity="0.1" Stretch="None"/>
+                        <ImageBrush ImageSource="Images/Background.png" 
+                                    Opacity="0.1" Stretch="None"/>
                     </Grid.Background>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.475*"/>
@@ -66,25 +67,42 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" Text="Прізвище:" Width="Auto"></TextBlock>
-                        <ComboBox Name="LastNameBox" Grid.Row="0" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14"
+                                   Text="Прізвище:" Width="Auto"></TextBlock>
+                        <ComboBox Name="LastNameBox" Grid.Row="0" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True" 
+                                  ShouldPreserveUserEnteredPrefix="False"></ComboBox>
 
-                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" Text="Ім'я:" Width="Auto"></TextBlock>
-                        <ComboBox Name="FirstNameBox" Grid.Row="1" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" 
+                                   Text="Ім'я:" Width="Auto"></TextBlock>
+                        <ComboBox Name="FirstNameBox" Grid.Row="1" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True"
+                                  ShouldPreserveUserEnteredPrefix="False"></ComboBox>
 
-                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" Text="По-Батькові:" Width="Auto"></TextBlock>
-                        <ComboBox Name="MiddleNameBox" Grid.Row="2" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" 
+                                   Text="По-Батькові:" Width="Auto"></TextBlock>
+                        <ComboBox Name="MiddleNameBox" Grid.Row="2" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True"
+                                  ShouldPreserveUserEnteredPrefix="False"></ComboBox>
 
-                        <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14" Text="Область:" Width="Auto"></TextBlock>
-                        <ComboBox Name="RegionBox"  Grid.Row="3" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+                        <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14"
+                                   Text="Область:" Width="Auto"></TextBlock>
+                        <ComboBox Name="RegionBox"  Grid.Row="3" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
 
-                        <TextBlock Grid.Row="4" Grid.Column="0" FontSize="14" Text="Населений пункт:" Width="Auto"></TextBlock>
-                        <ComboBox Name="SettlementBox" Grid.Row="4" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+                        <TextBlock Grid.Row="4" Grid.Column="0" FontSize="14"
+                                   Text="Населений пункт:" Width="Auto"></TextBlock>
+                        <ComboBox Name="SettlementBox" Grid.Row="4" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
 
-                        <TextBlock Grid.Row="5" Grid.Column="0" FontSize="14" Text="Вулиця:" Width="Auto"></TextBlock>
-                        <ComboBox Name="StreetBox"  Grid.Row="5" Grid.Column="1" FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+                        <TextBlock Grid.Row="5" Grid.Column="0" FontSize="14"
+                                   Text="Вулиця:" Width="Auto"></TextBlock>
+                        <ComboBox Name="StreetBox"  Grid.Row="5" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
 
-                        <TextBlock Grid.Row="6" FontSize="14" Text="Дата Народження:" Grid.ColumnSpan="2" TextAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock Grid.Row="6" FontSize="14" Text="Дата Народження:"
+                                   Grid.ColumnSpan="2" TextAlignment="Center"
+                                   HorizontalAlignment="Center"></TextBlock>
 
 
                         <Grid Grid.Row="7" Grid.ColumnSpan="2">
@@ -93,8 +111,10 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" FontSize="14" Text="Від:" VerticalAlignment="Center"/>
-                            <DatePicker Name="StartDatePicker" Grid.Column="1" Language="uk-UA"/>
+                            <TextBlock Grid.Column="0" FontSize="14" Text="Від:"
+                                       VerticalAlignment="Center"/>
+                            <DatePicker Name="StartDatePicker" Grid.Column="1"
+                                        Language="uk-UA"/>
                         </Grid>
 
                         <Grid Grid.Row="8" Grid.ColumnSpan="2">
@@ -103,11 +123,15 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" FontSize="14" Text="До:" VerticalAlignment="Center"/>
-                            <DatePicker Name="EndDatePicker" Grid.Column="1" Language="uk-UA"/>
+                            <TextBlock Grid.Column="0" FontSize="14" Text="До:"
+                                       VerticalAlignment="Center"/>
+                            <DatePicker Name="EndDatePicker" Grid.Column="1"
+                                        Language="uk-UA"/>
                         </Grid>
 
-                        <Button MinWidth="100" Name="SearchButton" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Content="Пошук" VerticalAlignment="Top" HorizontalAlignment="Center"></Button>
+                        <Button MinWidth="100" Name="SearchButton" Grid.Row="9" Grid.Column="0" 
+                                Grid.ColumnSpan="2" Content="Пошук" VerticalAlignment="Top"
+                                HorizontalAlignment="Center"></Button>
 
                     </Grid>
                     <GridSplitter Grid.Column="1" ShowsPreview="False" Width="5"
@@ -118,28 +142,588 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <ListBox Name="ListBoxPatient" Grid.Row="0" Background="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Stretch">
+                        <ListBox Name="ListBoxPatient" Grid.Row="0" Background="{x:Null}"
+                                 BorderThickness="0" HorizontalContentAlignment="Stretch"
+                                 ScrollViewer.CanContentScroll="False"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <DockPanel Name="DockPanel" Margin="2" HorizontalAlignment="Stretch" LastChildFill="False">
-                                        <TextBlock DockPanel.Dock="Left" FontSize="14" Text="{Binding Path=LastName}" VerticalAlignment="Center" Margin="2"/>
-                                        <TextBlock DockPanel.Dock="Left" FontSize="14" Text="{Binding Path=FirstName}" VerticalAlignment="Center" Margin="2"/>
-                                        <TextBlock DockPanel.Dock="Left" FontSize="14" Text="{Binding Path=MiddleName}" VerticalAlignment="Center" Margin="2"/>
-                                        <TextBlock DockPanel.Dock="Left" FontSize="14" Text="{Binding Path=BirthDate, StringFormat=dd.MM.yyyy}" VerticalAlignment="Center" Margin="2"/>
-                                        <Button Click="DeleteButtonOnClick" MinWidth="100" DockPanel.Dock="Right" Name="DeleteButton" Tag="{Binding Path=Id}" Content="Видалити" Margin="2"></Button>
-                                        <Button Click="EditButtonOnClick" MinWidth="100" DockPanel.Dock="Right" Name="EditButton" Tag="{Binding Path=Id}" Content="Редагувати" Margin="2"></Button>
+                                    <DockPanel Name="DockPanel" Margin="2" 
+                                               HorizontalAlignment="Stretch" LastChildFill="False">
+                                        <TextBlock DockPanel.Dock="Left" FontSize="14"
+                                                   Text="{Binding Path=LastName}" 
+                                                   VerticalAlignment="Center" Margin="2"/>
+                                        <TextBlock DockPanel.Dock="Left" FontSize="14"
+                                                   Text="{Binding Path=FirstName}"
+                                                   VerticalAlignment="Center" Margin="2"/>
+                                        <TextBlock DockPanel.Dock="Left" FontSize="14"
+                                                   Text="{Binding Path=MiddleName}"
+                                                   VerticalAlignment="Center" Margin="2"/>
+                                        <TextBlock DockPanel.Dock="Left" FontSize="14"
+                                                   Text="{Binding Path=BirthDate, StringFormat=dd.MM.yyyy}"
+                                                   VerticalAlignment="Center" Margin="2"/>
+                                        <Button Click="DeleteButtonOnClick" MinWidth="100"
+                                                DockPanel.Dock="Right" Name="DeleteButton"
+                                                Tag="{Binding Path=Id}" Content="Видалити"
+                                                Margin="2"></Button>
+                                        <Button Click="EditButtonOnClick" MinWidth="100"
+                                                DockPanel.Dock="Right" Name="EditButton"
+                                                Tag="{Binding Path=Id}" Content="Редагувати"
+                                                Margin="2"></Button>
                                     </DockPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <Button Name="CreateButton" Margin="2 0 0 0" Content="Створити нового пацієнта" Grid.Row="1"></Button>
+                        <Button Name="CreateButton" Margin="2 0 0 0" 
+                                Content="Створити нового пацієнта" Grid.Row="1"></Button>
 
-</Grid>
                     </Grid>
+                </Grid>
             </TabItem.Content>
         </TabItem>
-        <TabItem Name="Examination" Header="Обстеження МРТ">
 
+        <TabItem Name="ExaminationMRI" Header="Обстеження МРТ">
+            <TabItem.Content>
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Images/Background.png" 
+                                    Opacity="0.1" Stretch="None"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.475*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" 
+                                   Text="Пацієнт:" Width="Auto"></TextBlock>
+                        <ComboBox Grid.Row="0" Grid.Column="1" Name="MRIPatientBox">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=LastName}" Margin="2 0"/>
+                                        <TextBlock Text="{Binding Path=FirstName}" Margin="2 0"/>
+                                        <TextBlock Text="{Binding Path=MiddleName}" Margin="2 0"/>
+                                        <TextBlock Text="{Binding Path=BirthDate, StringFormat=dd.MM.yyyy}" Margin="2 0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Grid.Row="0" Grid.Column="2" Name="MRIPatientBoxDelete" Margin="0 5 5 5" Width="16" Height="16">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Images/newRedX2.png" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" 
+                                   Text="Лікар:" Width="Auto"/>
+                        <ComboBox Grid.Row="1" Grid.Column="1" Name="MRIDoctorBox" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=LastName}" Margin="2 0"/>
+                                        <TextBlock Text="{Binding Path=FirstName}" Margin="2 0"/>
+                                        <TextBlock Text="{Binding Path=MiddleName}" Margin="2 0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Grid.Row="1" Grid.Column="2" Name="MRIDoctorBoxDelete" Margin="0 5 5 5" Width="16" Height="16">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Images/newRedX2.png" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <TextBlock Grid.Row="2" FontSize="14" Text="Дата Обстеження:"
+                                   Grid.ColumnSpan="3" TextAlignment="Center"
+                                   HorizontalAlignment="Center"></TextBlock>
+
+                        <Grid Grid.Row="3" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" FontSize="14" Text="Від:" VerticalAlignment="Center"/>
+                            <DatePicker Name="MRIStartDatePicker" Grid.Column="1" Language="uk-UA"/>
+                        </Grid>
+
+                        <Grid Grid.Row="4" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" FontSize="14" Text="До:" VerticalAlignment="Center"/>
+                            <DatePicker Name="MRIEndDatePicker" Grid.Column="1" Language="uk-UA"/>
+                        </Grid>
+
+                        <Button MinWidth="100" Name="MRISearchButton" Grid.Row="5" Grid.Column="0"
+                                Grid.ColumnSpan="3" Content="Пошук" VerticalAlignment="Top"
+                                HorizontalAlignment="Center"></Button>
+
+                    </Grid>
+                    <GridSplitter Grid.Column="1" ShowsPreview="False" Width="5"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ListBox Name="MRIListBox" Grid.Row="0" Background="{x:Null}"
+                                 BorderThickness="0" HorizontalContentAlignment="Stretch"
+                                 ScrollViewer.CanContentScroll="False"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="#0F000000">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Name="DockPanel" Grid.Row="0" Grid.Column="0" 
+                                       Margin="2" HorizontalAlignment="Stretch">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" 
+                                           Text="{Binding Path=Patient.LastName}" 
+                                           VerticalAlignment="Top" Margin="2"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" FontSize="14" 
+                                                       Text="{Binding Path=Patient.FirstName}" 
+                                                       VerticalAlignment="Top" Margin="2"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="2" FontSize="14" 
+                                                       Text="{Binding Path=Patient.MiddleName}" 
+                                                       VerticalAlignment="Top" Margin="2"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="3" FontSize="14" 
+                                           Text="{Binding Path=ExaminationDate, StringFormat=dd.MM.yyyy}" 
+                                           VerticalAlignment="Top" Margin="2"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" FontSize="14" 
+                                           Text="{Binding Path=Diagnosis}" 
+                                           HorizontalAlignment="Stretch" Margin="2"
+                                           TextWrapping="Wrap" TextAlignment="Justify"/>
+                                            <Button Click="MRIDeleteButtonOnClick" MinWidth="100" 
+                                        Grid.Row="0" Grid.Column="5" Name="DeleteButton" 
+                                        Tag="{Binding Path=Id}" Content="Видалити" Margin="2"></Button>
+                                            <Button Click="MRIEditButtonOnClick" MinWidth="100" 
+                                        Grid.Row="0" Grid.Column="6" Name="EditButton" Tag="{Binding Path=Id}" 
+                                        Content="Редагувати" Margin="2"></Button>
+                                        </Grid>
+                                        <ItemsControl Name="ImageListBox" Grid.Row="1" Grid.Column="0" 
+                                     ItemsSource="{Binding Path=ExaminationDatas}" 
+                                     BorderThickness="0" HorizontalContentAlignment="Stretch"
+                                     Background="#00000000"
+                                     Margin="0" Padding="0">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel IsItemsHost="True" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Image Height="100"
+                                               Source="{Binding Path=SmallImage}"></Image>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Name="MRICreateButton" Margin="2 2 0 0" Content="Створити нове обстеження" Grid.Row="1"></Button>
+
+                    </Grid>
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem Name="ExaminationECG" Header="Обстеження ЕКГ">
+            <TabItem.Content>
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Images/Background.png" 
+                                    Opacity="0.1" Stretch="None"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.475*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" 
+                                   Text="Пацієнт:" Width="Auto"></TextBlock>
+                        <ComboBox Grid.Row="0" Grid.Column="1" Name="ECGPatientBox">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=LastName}" Margin="2 0"/>
+                                        <TextBlock Text="{Binding Path=FirstName}" Margin="2 0"/>
+                                        <TextBlock Text="{Binding Path=MiddleName}" Margin="2 0"/>
+                                        <TextBlock Text="{Binding Path=BirthDate, StringFormat=dd.MM.yyyy}" Margin="2 0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Grid.Row="0" Grid.Column="2" Name="ECGPatientBoxDelete" Margin="0 5 5 5" Width="16" Height="16">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Images/newRedX2.png" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" 
+                                   Text="Лікар:" Width="Auto"/>
+                        <ComboBox Grid.Row="1" Grid.Column="1" Name="ECGDoctorBox" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=LastName}" Margin="2 0"/>
+                                        <TextBlock Text="{Binding Path=FirstName}" Margin="2 0"/>
+                                        <TextBlock Text="{Binding Path=MiddleName}" Margin="2 0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Grid.Row="1" Grid.Column="2" Name="ECGDoctorBoxDelete" Margin="0 5 5 5" Width="16" Height="16">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Images/newRedX2.png" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <TextBlock Grid.Row="2" FontSize="14" Text="Дата Обстеження:"
+                                   Grid.ColumnSpan="3" TextAlignment="Center"
+                                   HorizontalAlignment="Center"></TextBlock>
+
+                        <Grid Grid.Row="3" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" FontSize="14" Text="Від:" VerticalAlignment="Center"/>
+                            <DatePicker Name="ECGStartDatePicker" Grid.Column="1" Language="uk-UA"/>
+                        </Grid>
+
+                        <Grid Grid.Row="4" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" FontSize="14" Text="До:" VerticalAlignment="Center"/>
+                            <DatePicker Name="ECGEndDatePicker" Grid.Column="1" Language="uk-UA"/>
+                        </Grid>
+
+                        <Button MinWidth="100" Name="ECGSearchButton" Grid.Row="5" Grid.Column="0"
+                                Grid.ColumnSpan="3" Content="Пошук" VerticalAlignment="Top"
+                                HorizontalAlignment="Center"></Button>
+
+                    </Grid>
+                    <GridSplitter Grid.Column="1" ShowsPreview="False" Width="5"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ListBox Name="ECGListBox" Grid.Row="0" Background="{x:Null}"
+                                 BorderThickness="0" HorizontalContentAlignment="Stretch"
+                                 ScrollViewer.CanContentScroll="False"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="#0F000000">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Name="DockPanel" Grid.Row="0" Grid.Column="0" 
+                                       Margin="2" HorizontalAlignment="Stretch">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" 
+                                           Text="{Binding Path=Patient.LastName}" 
+                                           VerticalAlignment="Top" Margin="2"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" FontSize="14" 
+                                                       Text="{Binding Path=Patient.FirstName}" 
+                                                       VerticalAlignment="Top" Margin="2"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="2" FontSize="14" 
+                                                       Text="{Binding Path=Patient.MiddleName}" 
+                                                       VerticalAlignment="Top" Margin="2"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="3" FontSize="14" 
+                                           Text="{Binding Path=ExaminationDate, StringFormat=dd.MM.yyyy}" 
+                                           VerticalAlignment="Top" Margin="2"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" FontSize="14" 
+                                           Text="{Binding Path=Diagnosis}" 
+                                           HorizontalAlignment="Stretch" Margin="2"
+                                           TextWrapping="Wrap" TextAlignment="Justify"/>
+                                            <Button Click="ECGDeleteButtonOnClick" MinWidth="100" 
+                                        Grid.Row="0" Grid.Column="5" Name="DeleteButton" 
+                                        Tag="{Binding Path=Id}" Content="Видалити" Margin="2"></Button>
+                                            <Button Click="ECGEditButtonOnClick" MinWidth="100" 
+                                        Grid.Row="0" Grid.Column="6" Name="EditButton" Tag="{Binding Path=Id}" 
+                                        Content="Редагувати" Margin="2"></Button>
+                                        </Grid>
+                                        <ItemsControl Name="ImageListBox" Grid.Row="1" Grid.Column="0" 
+                                     ItemsSource="{Binding Path=ExaminationDatas}" 
+                                     BorderThickness="0" HorizontalContentAlignment="Stretch"
+                                     Background="#00000000"
+                                     Margin="0" Padding="0">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel IsItemsHost="True" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Image Height="100"
+                                               Source="{Binding Path=SmallImage}"></Image>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Name="ECGCreateButton" Margin="2 2 0 0" Content="Створити нове обстеження" Grid.Row="1"></Button>
+
+                    </Grid>
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem Name="Doctor" Header="Лікарі">
+            <TabItem.Content>
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Images/Background.png" 
+                                    Opacity="0.1" Stretch="None"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.475*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14"
+                                   Text="Посада:" Width="Auto"></TextBlock>
+                        <ComboBox Name="DoctorPositionBox"  Grid.Row="0" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True"></ComboBox>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14"
+                                   Text="Прізвище:" Width="Auto"></TextBlock>
+                        <ComboBox Name="DoctorLastNameBox" Grid.Row="1" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True" 
+                                  ShouldPreserveUserEnteredPrefix="False"></ComboBox>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" 
+                                   Text="Ім'я:" Width="Auto"></TextBlock>
+                        <ComboBox Name="DoctorFirstNameBox" Grid.Row="2" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True"
+                                  ShouldPreserveUserEnteredPrefix="False"></ComboBox>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14" 
+                                   Text="По-Батькові:" Width="Auto"></TextBlock>
+                        <ComboBox Name="DoctorMiddleNameBox" Grid.Row="3" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True"
+                                  ShouldPreserveUserEnteredPrefix="False"></ComboBox>
+
+                        <Button MinWidth="100" Name="DoctorSearchButton" Grid.Row="4" Grid.Column="0" 
+                                Grid.ColumnSpan="2" Content="Пошук" VerticalAlignment="Top"
+                                HorizontalAlignment="Center"></Button>
+
+                    </Grid>
+                    <GridSplitter Grid.Column="1" ShowsPreview="False" Width="5"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ListBox Name="DoctorListBox" Grid.Row="0" Background="{x:Null}"
+                                 BorderThickness="0" HorizontalContentAlignment="Stretch">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel Name="DockPanel" Margin="2" 
+                                               HorizontalAlignment="Stretch" LastChildFill="False">
+                                        <TextBlock DockPanel.Dock="Left" FontSize="14"
+                                                   Text="{Binding Path=Position}" 
+                                                   VerticalAlignment="Center" Margin="2"/>
+                                        <TextBlock DockPanel.Dock="Left" FontSize="14"
+                                                   Text="{Binding Path=LastName}" 
+                                                   VerticalAlignment="Center" Margin="2"/>
+                                        <TextBlock DockPanel.Dock="Left" FontSize="14"
+                                                   Text="{Binding Path=FirstName}"
+                                                   VerticalAlignment="Center" Margin="2"/>
+                                        <TextBlock DockPanel.Dock="Left" FontSize="14"
+                                                   Text="{Binding Path=MiddleName}"
+                                                   VerticalAlignment="Center" Margin="2"/>
+                                        <Button Click="DoctorDeleteButtonOnClick" MinWidth="100"
+                                                DockPanel.Dock="Right" Name="DeleteButton"
+                                                Tag="{Binding Path=Id}" Content="Видалити"
+                                                Margin="2"></Button>
+                                        <Button Click="DoctorEditButtonOnClick" MinWidth="100"
+                                                DockPanel.Dock="Right" Name="EditButton"
+                                                Tag="{Binding Path=Id}" Content="Редагувати"
+                                                Margin="2"></Button>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Name="DoctorCreateButton" Margin="2 0 0 0" 
+                                Content="Створити нового лікаря" Grid.Row="1"></Button>
+                    </Grid>
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem Name="DeletedRows" Header="Видалені записи">
+            <TabItem.Content>
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Images/Background.png" 
+                                    Opacity="0.1" Stretch="None"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.475*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" 
+                                   Text="Таблиця:" Width="Auto"></TextBlock>
+                        <ComboBox Grid.Row="0" Grid.Column="1" Name="RowTypeBox"/>
+                        <Button Grid.Row="0" Grid.Column="2" Name="RowTypeBoxDelete" Margin="0 5 5 5" Width="16" Height="16">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Images/newRedX2.png" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <TextBlock Grid.Row="1" FontSize="14" Text="Дата Видалення:"
+                                   Grid.ColumnSpan="3" TextAlignment="Center"
+                                   HorizontalAlignment="Center"></TextBlock>
+
+                        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" FontSize="14" Text="Від:" VerticalAlignment="Center"/>
+                            <DatePicker Name="RowStartDatePicker" Grid.Column="1" Language="uk-UA"/>
+                        </Grid>
+
+                        <Grid Grid.Row="3" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" FontSize="14" Text="До:" VerticalAlignment="Center"/>
+                            <DatePicker Name="RowEndDatePicker" Grid.Column="1" Language="uk-UA"/>
+                        </Grid>
+
+                        <Button MinWidth="100" Name="RowSearchButton" Grid.Row="4" Grid.Column="0"
+                                Grid.ColumnSpan="3" Content="Пошук" VerticalAlignment="Top"
+                                HorizontalAlignment="Center"></Button>
+
+                    </Grid>
+                    <GridSplitter Grid.Column="1" ShowsPreview="False" Width="5"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+
+                    <ListBox Name="RowListBox" Grid.Column="2" Background="{x:Null}"
+                             BorderThickness="0" HorizontalContentAlignment="Stretch"
+                             ScrollViewer.CanContentScroll="False"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel Name="DockPanel" Margin="2" 
+                                               HorizontalAlignment="Stretch" LastChildFill="False">
+                                    <TextBlock DockPanel.Dock="Left" FontSize="14"
+                                                   Text="{Binding Path=Text}" 
+                                                   VerticalAlignment="Center" Margin="2"/>
+                                    <Button Click="RowRestoreButtonOnClick" MinWidth="100"
+                                                DockPanel.Dock="Right" Name="RestoreButton"
+                                                Tag="{Binding Path=Id}" Content="Відновити"
+                                                Margin="2"></Button>
+                                    </DockPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    </Grid>
+            </TabItem.Content>
         </TabItem>
 
     </TabControl>

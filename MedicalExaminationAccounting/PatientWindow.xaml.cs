@@ -14,11 +14,11 @@ namespace MedicalExaminationAccounting
     /// </summary>
     public partial class PatientWindow : Window
     {
-        public Patient LocalPatient { get; set; }
-        public Patient NewLocalPatient { get; set; }
-        public NameRule NameRule = new NameRule();
-        public ActionType Action { get; set; }
-        EFUnitOfWork unitOfWork = new EFUnitOfWork("DataContext");
+        private Patient LocalPatient { get; set; }
+        private Patient NewLocalPatient { get; set; }
+        private NameRule NameRule = new NameRule();
+        private ActionType Action { get; set; }
+        private EFUnitOfWork unitOfWork = new EFUnitOfWork("DataContext");
 
         public PatientWindow()
         {

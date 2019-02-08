@@ -19,7 +19,7 @@ namespace MedicalExaminationAccounting.Model.Repositories
 
         public IQueryable<ExaminationType> GetAll()
         {
-            return db.ExaminationTypes.Include(item => item.Examinations);
+            return db.ExaminationTypes;
         }
 
         public ExaminationType Get(int id)
@@ -29,7 +29,7 @@ namespace MedicalExaminationAccounting.Model.Repositories
 
         public IEnumerable<ExaminationType> Find(Func<ExaminationType, bool> predicate)
         {
-            return db.ExaminationTypes.Include(item => item.Examinations).Where(predicate);
+            return db.ExaminationTypes.Where(predicate);
         }
 
         public void Create(ExaminationType item)

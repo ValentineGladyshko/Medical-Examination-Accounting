@@ -11,7 +11,5 @@ namespace MedicalExaminationAccounting.Model.Entities
         public string TypeName { get; set; }
 
         public DateTime? DeletedDate { get; set; }
-
-        public virtual ICollection<Examination> Examinations { get; set; }
     }
 }
