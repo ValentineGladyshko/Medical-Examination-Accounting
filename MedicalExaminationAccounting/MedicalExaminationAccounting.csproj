@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="Rules\NameRule.cs" />
     <Compile Include="Tools\IImageConverter.cs" />
+    <Compile Include="Tools\JpgQualityConverter.cs" />
     <Compile Include="Tools\JpgToPngConverter.cs" />
     <Compile Include="Tools\PngToJpgConverter.cs" />
     <Page Include="DialogWindow.xaml">

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MedicalExaminationAccounting.Model.Entities;
 using MedicalExaminationAccounting.Tools;
+using Region = MedicalExaminationAccounting.Model.Entities.Region;
 
 namespace MedicalExaminationAccounting.Model.Context
 {
@@ -45,23 +49,27 @@ namespace MedicalExaminationAccounting.Model.Context
     {
         protected override void Seed(DataContext db)
         {
+            RegionInit(db);
             ExaminationTypeInit(db);
             PatientInit(db);
+            DoctorInit(db);
             ExaminationInit(db);
         }
 
         private void RegionInit(DataContext db)
         {
-            string path = @"C:\Users\Kappi\Source\Repos\Medical-Examination-Accounting\MedicalExaminationAccounting\Strings";
-            string[] regionNames = File.ReadAllLines(path + @"\regions.txt");
-            foreach (var name in regionNames)
+            string path = "../../Strings";
+            string[] regions = File.ReadAllLines(path + "/regions.txt");
+            var regionsList = new List<Region>();
+            foreach (string region in regions)
             {
-                db.Regions.Add(new Region
+                regionsList.Add(new Region
                 {
-                    RegionName = name
+                    RegionName = region,
+                    DeletedDate = null
                 });
             }
-            
+            db.Regions.AddRange(regionsList);
             db.SaveChanges();
         }
 
@@ -84,26 +92,18 @@ namespace MedicalExaminationAccounting.Model.Context
 
         private void PatientInit(DataContext db)
         {
-            string path = @"C:\Users\Kappi\Source\Repos\Medical-Examination-Accounting\MedicalExaminationAccounting\Strings";
-            string[] womanFirstNames = File.ReadAllLines(path + @"\womanfirstnames.txt");
-            string[] womanMiddleNames = File.ReadAllLines(path + @"\womanmiddlenames.txt");
-            string[] womanLastNames = File.ReadAllLines(path + @"\womanlastnames.txt");
-            string[] manFirstNames = File.ReadAllLines(path + @"\manfirstnames.txt");
-            string[] manMiddleNames = File.ReadAllLines(path + @"\manmiddlenames.txt");
-            string[] manLastNames = File.ReadAllLines(path + @"\manlastnames.txt");
-
-            db.Regions.Add(new Region
-            {
-                RegionName = "Київська",
-                DeletedDate = null
-            });
-
-            db.SaveChanges();
+            string path = "../../Strings";
+            string[] womanFirstNames = File.ReadAllLines(path + "/womanfirstnames.txt");
+            string[] womanMiddleNames = File.ReadAllLines(path + "/womanmiddlenames.txt");
+            string[] womanLastNames = File.ReadAllLines(path + "/womanlastnames.txt");
+            string[] manFirstNames = File.ReadAllLines(path + "/manfirstnames.txt");
+            string[] manMiddleNames = File.ReadAllLines(path + "/manmiddlenames.txt");
+            string[] manLastNames = File.ReadAllLines(path + "/manlastnames.txt");
 
             db.Settlements.Add(new Settlement
             {
                 SettlementName = "Київ",
-                RegionId = db.Regions.First().Id,
+                RegionId = db.Regions.Where(region => region.RegionName == "м. Київ").First().Id,
                 DeletedDate = null
             });
 
@@ -119,8 +119,15 @@ namespace MedicalExaminationAccounting.Model.Context
             db.SaveChanges();
 
             Random rand = new Random();
-            var list = new List<Patient>();
-            int id = db.Streets.First().Id;
+            DateTime RandomDate()
+            {
+                DateTime start = new DateTime(1950, 1, 1);
+                int range = (DateTime.Today - start).Days;
+                return start.AddDays(rand.Next(range) - 7000);
+            }
+
+            var patientslist = new List<Patient>();
+            int streertId = db.Streets.First().Id;
             for (int i = 0; i < 1000; i++)
             {
                 var patient = new Patient();
@@ -137,99 +144,124 @@ namespace MedicalExaminationAccounting.Model.Context
                     patient.LastName = manLastNames[rand.Next(0, manLastNames.Length)];
                 }
 
-                patient.BirthDate = DateTime.Today;
-                patient.StreetId = id;
+                patient.BirthDate = RandomDate();
+                patient.StreetId = streertId;
                 patient.DeletedDate = null;
-                list.Add(patient);
+                patientslist.Add(patient);
             }
 
-            db.Patients.AddRange(list);
+            db.Patients.AddRange(patientslist);
+            db.SaveChanges();
+        }
+
+        private void DoctorInit(DataContext db)
+        {
+            string path = "../../Strings";
+            string[] womanFirstNames = File.ReadAllLines(path + "/womanfirstnames.txt");
+            string[] womanMiddleNames = File.ReadAllLines(path + "/womanmiddlenames.txt");
+            string[] womanLastNames = File.ReadAllLines(path + "/womanlastnames.txt");
+            string[] manFirstNames = File.ReadAllLines(path + "/manfirstnames.txt");
+            string[] manMiddleNames = File.ReadAllLines(path + "/manmiddlenames.txt");
+            string[] manLastNames = File.ReadAllLines(path + "/manlastnames.txt");
+
+            Random rand = new Random();
+            var doctorslist = new List<Doctor>();
+            for (int i = 0; i < 50; i++)
+            {
+                var doctor = new Doctor();
+                if (rand.Next(0, 2) == 0)
+                {
+                    doctor.FirstName = womanFirstNames[rand.Next(0, womanFirstNames.Length)];
+                    doctor.MiddleName = womanMiddleNames[rand.Next(0, womanMiddleNames.Length)];
+                    doctor.LastName = womanLastNames[rand.Next(0, womanLastNames.Length)];
+                }
+                else
+                {
+                    doctor.FirstName = manFirstNames[rand.Next(0, manFirstNames.Length)];
+                    doctor.MiddleName = manMiddleNames[rand.Next(0, manMiddleNames.Length)];
+                    doctor.LastName = manLastNames[rand.Next(0, manLastNames.Length)];
+                }
+
+                doctor.DeletedDate = null;
+                doctor.Position = "Рентгенолог";
+                doctorslist.Add(doctor);
+            }
+
+            db.Doctors.AddRange(doctorslist);
             db.SaveChanges();
         }
 
         private void ExaminationInit(DataContext db)
         {
             Random rand = new Random();
-
-            byte[] bytes = File.ReadAllBytes("../../Images/forest.jpg");
-            PngToJpgConverter converter = new PngToJpgConverter();
-            var some = converter.ConvertImage(bytes);
-            var stream1 = new MemoryStream(bytes);
-            JpegBitmapDecoder decoder = new JpegBitmapDecoder(stream1, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-            BitmapFrame frame = decoder.Frames[0];
-            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-            encoder.QualityLevel = 60;
-            encoder.Frames.Add(frame);
-            byte[] newBytes;
-            using (var stream = new MemoryStream())
+            DateTime RandomDate()
             {
-                encoder.Save(stream);
-                newBytes = stream.GetBuffer();
+                DateTime start = new DateTime(2015, 1, 1);
+                int range = (DateTime.Today - start).Days;
+                return start.AddDays(rand.Next(range));
             }
 
-            byte[] bytes2 = File.ReadAllBytes("../../Images/mountain.jpg");
-            var stream2 = new MemoryStream(bytes2);
-            var some2 = converter.ConvertImage(bytes2);
-            JpegBitmapDecoder decoder2 = new JpegBitmapDecoder(stream2, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-            BitmapFrame frame2 = decoder2.Frames[0];
-            JpegBitmapEncoder encoder2 = new JpegBitmapEncoder();
-            encoder2.QualityLevel = 60;
-            encoder2.Frames.Add(frame2);
-            byte[] newBytes2;
-            using (var stream = new MemoryStream())
-            {
-                encoder2.Save(stream);
-                newBytes2 = stream.GetBuffer();
-            }
+            IImageConverter imageConverter = new JpgQualityConverter();
 
-            var list = db.Patients.ToList();
-            foreach (var patient in list)
-            {
-                if(rand.Next(0,2)==0)
-                    continue;
-                for (int i = 0; i < 1; i++)
+            byte[] newBytes1 = imageConverter.ConvertImage(File.ReadAllBytes("../../Images/forest.jpg"));
+            byte[] newBytes2 = imageConverter.ConvertImage(File.ReadAllBytes("../../Images/mountain.jpg"));
+            byte[] newBytes3 = imageConverter.ConvertImage(File.ReadAllBytes("../../Images/blueberries.jpg"));
+
+            //File.WriteAllBytes("../../Images/forest1.jpg", newBytes1);
+
+            var patientsList = db.Patients.ToList();
+            int patientsCount = patientsList.Count;
+            var doctorList = db.Doctors.ToList();
+            int doctorsCount = doctorList.Count;
+            var examinationTypesList = db.ExaminationTypes.ToList();
+            int examinationTypesCount = examinationTypesList.Count;
+
+            for (int i = 0; i < 1000; i++)
+            {                
+                Examination examination = new Examination
                 {
-                    ExaminationType type = db.ExaminationTypes.ToList()
-                        [rand.Next(0, db.ExaminationTypes.ToList().Count)];
+                    Diagnosis = "Some Diagnosis",
+                    PatientId = patientsList[rand.Next(0, patientsCount)].Id,
+                    DoctorId = doctorList[rand.Next(0, doctorsCount)].Id,
+                    ExaminationTypeId = examinationTypesList[rand.Next(0, examinationTypesCount)].Id,
+                    ExaminationDate = RandomDate(),
+                    Descripton = "Some Descripton"
+                };
 
-                    Examination examination = new Examination
-                    {
-                        Diagnosis = "Some Diagnosis",
-                        PatientId = patient.Id,
-                        ExaminationTypeId = type.Id,
-                        ExaminationDate = DateTime.Now,
-                        Descripton = "Some Descripton"
-                    };
+                db.Examinations.Add(examination);
+                db.SaveChanges();
 
-                    Examination examination2 = new Examination
-                    {
-                        Diagnosis = "Some Diagnosis2",
-                        PatientId = patient.Id,
-                        ExaminationTypeId = type.Id,
-                        ExaminationDate = DateTime.Now,
-                        Descripton = "Some Descripton2"
-                    };
-
-                    db.Examinations.Add(examination);
-                    db.Examinations.Add(examination2);
-                    db.SaveChanges();
-
+                if (rand.Next(0, 2) == 0)
+                {
                     ExaminationData data = new ExaminationData
                     {
                         ExaminationId = examination.Id,
-                        Data = newBytes
+                        Data = newBytes1
                     };
+                    db.ExaminationDatas.Add(data);
+                }
 
-                    ExaminationData data2 = new ExaminationData
+                if (rand.Next(0, 2) == 0)
+                {
+                    ExaminationData data = new ExaminationData
                     {
                         ExaminationId = examination.Id,
                         Data = newBytes2
                     };
-
                     db.ExaminationDatas.Add(data);
-                    db.ExaminationDatas.Add(data2);
-                    db.SaveChanges();
                 }
+
+                if (rand.Next(0, 2) == 0)
+                {
+                    ExaminationData data = new ExaminationData
+                    {
+                        ExaminationId = examination.Id,
+                        Data = newBytes3
+                    };
+                    db.ExaminationDatas.Add(data);
+                }
+
+                db.SaveChanges();
             }
         }
     }
